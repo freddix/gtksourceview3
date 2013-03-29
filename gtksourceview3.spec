@@ -1,11 +1,11 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Name:		gtksourceview3
-Version:	3.6.3
+Version:	3.8.0
 Release:	1
 License:	GPL v2+ and LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.6/gtksourceview-%{version}.tar.xz
-# Source0-md5:	e8df1c01ef6864e68c4c5b15fe71e2c6
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.8/gtksourceview-%{version}.tar.xz
+# Source0-md5:	b4d72cf0998a8ba4f08a8cd2c96b7844
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -45,11 +45,13 @@ GtkSourceView API documentation.
 %setup -qn gtksourceview-%{version}
 
 # kill gnome common deps
-sed -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
+%{__sed} -i -e 's/GNOME_COMPILE_WARNINGS.*//g'	\
     -i -e 's/GNOME_MAINTAINER_MODE_DEFINES//g'	\
     -i -e 's/GNOME_COMMON_INIT//g'		\
     -i -e 's/GNOME_CXX_WARNINGS.*//g'		\
-    -i -e 's/GNOME_DEBUG_CHECK//g' configure.ac
+    -i -e 's/GNOME_DEBUG_CHECK//g' 		\
+    -i -e '/GNOME_CODE_COVERAGE/d' configure.ac
+%{__sed} -i -e '/@GNOME_CODE_COVERAGE_RULES@/d' Makefile.am gtksourceview/Makefile.am tests/Makefile.am
 
 %build
 %{__gtkdocize}
