@@ -1,18 +1,18 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Name:		gtksourceview3
-Version:	3.8.2
+Version:	3.10.0
 Release:	1
 License:	GPL v2+ and LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.8/gtksourceview-%{version}.tar.xz
-# Source0-md5:	fa8a252f811b6042cfc2eb47e580609f
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.10/gtksourceview-%{version}.tar.xz
+# Source0-md5:	9403f8ee11611a00d4e55da174207236
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
-BuildRequires:	gobject-introspection-devel
-BuildRequires:	gtk+3-devel
+BuildRequires:	gobject-introspection-devel >= 1.38.0
+BuildRequires:	gtk+3-devel >= 3.10.0
 BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	libtool
@@ -51,7 +51,9 @@ GtkSourceView API documentation.
     -i -e 's/GNOME_CXX_WARNINGS.*//g'		\
     -i -e 's/GNOME_DEBUG_CHECK//g' 		\
     -i -e '/GNOME_CODE_COVERAGE/d' configure.ac
-%{__sed} -i -e '/@GNOME_CODE_COVERAGE_RULES@/d' Makefile.am gtksourceview/Makefile.am tests/Makefile.am
+
+%{__sed} -i -e '/@GNOME_CODE_COVERAGE_RULES@/d' Makefile.am \
+	gtksourceview/Makefile.am tests/Makefile.am gtksourceview/completion-providers/words/Makefile.am
 
 %build
 %{__gtkdocize}
