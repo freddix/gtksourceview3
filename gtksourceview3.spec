@@ -1,11 +1,11 @@
 Summary:	Text widget that extends the standard GTK+ 3.x
 Name:		gtksourceview3
-Version:	3.10.0
+Version:	3.10.1
 Release:	1
 License:	GPL v2+ and LGPL v2+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gtksourceview/3.10/gtksourceview-%{version}.tar.xz
-# Source0-md5:	9403f8ee11611a00d4e55da174207236
+# Source0-md5:	1e024f586d8203eec20fe4bfca9a26ff
 URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
